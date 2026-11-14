@@ -1,0 +1,287 @@
+全球各国家和地区邮政编码表
+========================================
+整理日期：2026-11-14
+覆盖范围：ISO 3166-1 全部 250 个国家和地区，其中 186 个使用邮政编码，64 个不使用
+格式符号：N 表示数字，A 表示字母，其余为固定前缀或分隔符，括号内为可选部分
+示例说明：一般为首都或首府所在地的邮编；标注“格式示例”的仅用于说明格式
+使用提示：寄国际邮件时请以收件国邮政官方查询为准
+每行格式：国家/地区 | 英文名 | ISO代码 | 有无邮编 | 邮编格式 | 示例 | 说明
+
+
+【亚洲】（51 个）
+----------------------------------------
+  1. 中国 | China | CN | 有 | NNNNNN | 100000（北京） | 6位数字；前2位省级、第3位邮区、第4位县市、后2位投递局
+  2. 中国香港 | Hong Kong | HK | 无 | — | 999077（内地寄港使用） | 香港本地不使用邮政编码；中国邮政规定内地寄往香港统一填写 999077
+  3. 中国澳门 | Macao | MO | 无 | — | 999078（内地寄澳使用） | 澳门本地不使用邮政编码；中国邮政规定内地寄往澳门统一填写 999078
+  4. 中国台湾 | Taiwan | TW | 有 | NNNNNN（3+3） | 100001（台北市中正区） | 2020年起实行3+3位邮递区号，前3位为县市乡镇，旧制为3位或3+2位
+  5. 日本 | Japan | JP | 有 | NNN-NNNN | 100-0001（东京都千代田区） | 7位数字，书写为“〒100-0001”
+  6. 韩国 | South Korea | KR | 有 | NNNNN | 03000（首尔钟路区） | 2015年起改为5位“国家基础区域号码”，旧制为6位
+  7. 朝鲜 | North Korea | KP | 无 | — | — | 不使用邮政编码
+  8. 蒙古 | Mongolia | MN | 有 | NNNNN | 14200（乌兰巴托） | 5位数字（2018年起），旧制为6位
+  9. 越南 | Vietnam | VN | 有 | NNNNN | 10000（河内） | 2018年起改为5位，旧制6位（如 100000）仍常见
+ 10. 老挝 | Laos | LA | 有 | NNNNN | 01000（万象） | 5位数字
+ 11. 柬埔寨 | Cambodia | KH | 有 | NNNNNN | 120000（金边） | 2020年起改为6位，旧制为5位（如 12000）
+ 12. 泰国 | Thailand | TH | 有 | NNNNN | 10200（曼谷） | 5位数字
+ 13. 缅甸 | Myanmar | MM | 有 | NNNNN | 11181（仰光） | 5位数字
+ 14. 马来西亚 | Malaysia | MY | 有 | NNNNN | 50000（吉隆坡） | 5位数字，前2位表示州
+ 15. 新加坡 | Singapore | SG | 有 | NNNNNN | 018956（新加坡） | 6位数字，每栋楼宇一个邮编
+ 16. 文莱 | Brunei | BN | 有 | AANNNN | BS8711（斯里巴加湾市） | 2字母+4数字
+ 17. 印度尼西亚 | Indonesia | ID | 有 | NNNNN | 10110（雅加达） | 5位数字
+ 18. 菲律宾 | Philippines | PH | 有 | NNNN | 1000（马尼拉） | 4位数字
+ 19. 东帝汶 | Timor-Leste | TL | 无 | — | — | 不使用邮政编码
+ 20. 印度 | India | IN | 有 | NNNNNN | 110001（新德里） | 6位 PIN 码
+ 21. 巴基斯坦 | Pakistan | PK | 有 | NNNNN | 44000（伊斯兰堡） | 5位数字
+ 22. 孟加拉国 | Bangladesh | BD | 有 | NNNN | 1000（达卡） | 4位数字
+ 23. 斯里兰卡 | Sri Lanka | LK | 有 | NNNNN | 00100（科伦坡） | 5位数字
+ 24. 尼泊尔 | Nepal | NP | 有 | NNNNN | 44600（加德满都） | 5位数字
+ 25. 不丹 | Bhutan | BT | 有 | NNNNN | 11001（廷布） | 5位数字
+ 26. 马尔代夫 | Maldives | MV | 有 | NNNNN | 20026（马累） | 5位数字
+ 27. 阿富汗 | Afghanistan | AF | 有 | NNNN | 1001（喀布尔） | 4位数字
+ 28. 伊朗 | Iran | IR | 有 | NNNNN-NNNNN | 11369-11111（格式示例） | 10位数字，中间以连字符分隔
+ 29. 伊拉克 | Iraq | IQ | 有 | NNNNN | 10001（巴格达） | 5位数字
+ 30. 叙利亚 | Syria | SY | 无 | — | — | 不使用邮政编码
+ 31. 黎巴嫩 | Lebanon | LB | 有 | NNNN NNNN / NNNN | 1100（贝鲁特） | 4位或8位（4+4）数字
+ 32. 约旦 | Jordan | JO | 有 | NNNNN | 11118（安曼） | 5位数字
+ 33. 以色列 | Israel | IL | 有 | NNNNNNN | 9100000（耶路撒冷，格式示例） | 2013年起为7位，旧制5位
+ 34. 巴勒斯坦 | Palestine | PS | 无 | — | — | 无统一邮编；部分地区2016年起试行3位编码
+ 35. 沙特阿拉伯 | Saudi Arabia | SA | 有 | NNNNN(-NNNN) | 11564（利雅得） | 5位数字，可加4位附加码
+ 36. 阿联酋 | United Arab Emirates | AE | 无 | — | — | 不使用邮政编码，多以邮政信箱（P.O. Box）投递
+ 37. 卡塔尔 | Qatar | QA | 无 | — | — | 不使用邮政编码
+ 38. 科威特 | Kuwait | KW | 有 | NNNNN | 13001（科威特城） | 5位数字
+ 39. 巴林 | Bahrain | BH | 有 | NNN / NNNN | 317（麦纳麦） | 3或4位数字（街区号）
+ 40. 阿曼 | Oman | OM | 有 | NNN | 100（马斯喀特） | 3位数字
+ 41. 也门 | Yemen | YE | 无 | — | — | 不使用邮政编码
+ 42. 土耳其 | Türkiye | TR | 有 | NNNNN | 06100（安卡拉） | 5位数字，前2位为省号
+ 43. 塞浦路斯 | Cyprus | CY | 有 | NNNN | 1010（尼科西亚） | 4位数字
+ 44. 格鲁吉亚 | Georgia | GE | 有 | NNNN | 0105（第比利斯） | 4位数字
+ 45. 亚美尼亚 | Armenia | AM | 有 | NNNN | 0010（埃里温） | 4位数字
+ 46. 阿塞拜疆 | Azerbaijan | AZ | 有 | AZ NNNN | AZ 1000（巴库） | 前缀 AZ + 4位数字
+ 47. 哈萨克斯坦 | Kazakhstan | KZ | 有 | NNNNNN | 010000（阿斯塔纳） | 6位数字
+ 48. 乌兹别克斯坦 | Uzbekistan | UZ | 有 | NNNNNN | 100000（塔什干） | 6位数字
+ 49. 吉尔吉斯斯坦 | Kyrgyzstan | KG | 有 | NNNNNN | 720000（比什凯克） | 6位数字
+ 50. 塔吉克斯坦 | Tajikistan | TJ | 有 | NNNNNN | 734000（杜尚别） | 6位数字
+ 51. 土库曼斯坦 | Turkmenistan | TM | 有 | NNNNNN | 744000（阿什哈巴德） | 6位数字
+
+【欧洲】（52 个）
+----------------------------------------
+ 52. 英国 | United Kingdom | GB | 有 | AN NAA / ANN NAA / AAN NAA / AANN NAA / ANA NAA / AANA NAA | SW1A 1AA（伦敦） | 字母数字混合，外码+内码
+ 53. 爱尔兰 | Ireland | IE | 有 | ANN AAAA | D02 X285（都柏林） | 2015年起实行 Eircode，7位字母数字
+ 54. 法国 | France | FR | 有 | NNNNN | 75001（巴黎） | 5位数字，前2位为省号；海外省为 97NNN/98NNN
+ 55. 德国 | Germany | DE | 有 | NNNNN | 10115（柏林） | 5位数字
+ 56. 意大利 | Italy | IT | 有 | NNNNN | 00100（罗马） | 5位数字（CAP）
+ 57. 西班牙 | Spain | ES | 有 | NNNNN | 28001（马德里） | 5位数字，前2位为省号
+ 58. 葡萄牙 | Portugal | PT | 有 | NNNN-NNN | 1000-001（里斯本） | 7位数字（4+3）
+ 59. 荷兰 | Netherlands | NL | 有 | NNNN AA | 1011 AB（阿姆斯特丹） | 4位数字+2位字母
+ 60. 比利时 | Belgium | BE | 有 | NNNN | 1000（布鲁塞尔） | 4位数字
+ 61. 卢森堡 | Luxembourg | LU | 有 | L-NNNN | L-1009（卢森堡市） | 前缀 L- + 4位数字
+ 62. 瑞士 | Switzerland | CH | 有 | NNNN | 3000（伯尔尼） | 4位数字
+ 63. 奥地利 | Austria | AT | 有 | NNNN | 1010（维也纳） | 4位数字
+ 64. 列支敦士登 | Liechtenstein | LI | 有 | NNNN | 9490（瓦杜兹） | 使用瑞士邮编体系，9485–9498
+ 65. 摩纳哥 | Monaco | MC | 有 | 980NN | 98000（摩纳哥） | 使用法国邮编体系
+ 66. 安道尔 | Andorra | AD | 有 | ADNNN | AD500（安道尔城） | 前缀 AD + 3位数字
+ 67. 圣马力诺 | San Marino | SM | 有 | 4789N | 47890（圣马力诺市） | 使用意大利邮编体系，47890–47899
+ 68. 梵蒂冈 | Vatican City | VA | 有 | 00120 | 00120 | 单一邮编，使用意大利邮编体系
+ 69. 马耳他 | Malta | MT | 有 | AAA NNNN | VLT 1117（瓦莱塔） | 3位字母+4位数字
+ 70. 直布罗陀（英） | Gibraltar | GI | 有 | GX11 1AA | GX11 1AA | 单一邮编
+ 71. 丹麦 | Denmark | DK | 有 | NNNN | 1050（哥本哈根） | 4位数字
+ 72. 法罗群岛（丹） | Faroe Islands | FO | 有 | NNN | FO-100（托尔斯港） | 3位数字，常加前缀 FO-
+ 73. 挪威 | Norway | NO | 有 | NNNN | 0010（奥斯陆） | 4位数字
+ 74. 斯瓦尔巴和扬马延（挪） | Svalbard and Jan Mayen | SJ | 有 | NNNN | 9170（朗伊尔城） | 使用挪威邮编体系
+ 75. 瑞典 | Sweden | SE | 有 | NNN NN | 111 20（斯德哥尔摩） | 5位数字（3+2）
+ 76. 芬兰 | Finland | FI | 有 | NNNNN | 00100（赫尔辛基） | 5位数字
+ 77. 奥兰群岛（芬） | Åland Islands | AX | 有 | NNNNN | 22100（玛丽港） | 使用芬兰邮编体系，22NNN
+ 78. 冰岛 | Iceland | IS | 有 | NNN | 101（雷克雅未克） | 3位数字
+ 79. 爱沙尼亚 | Estonia | EE | 有 | NNNNN | 10111（塔林） | 5位数字
+ 80. 拉脱维亚 | Latvia | LV | 有 | LV-NNNN | LV-1050（里加） | 前缀 LV- + 4位数字
+ 81. 立陶宛 | Lithuania | LT | 有 | LT-NNNNN | LT-01100（维尔纽斯） | 前缀 LT- + 5位数字
+ 82. 波兰 | Poland | PL | 有 | NN-NNN | 00-001（华沙） | 5位数字（2+3）
+ 83. 捷克 | Czechia | CZ | 有 | NNN NN | 110 00（布拉格） | 5位数字（3+2）
+ 84. 斯洛伐克 | Slovakia | SK | 有 | NNN NN | 811 01（布拉迪斯拉发） | 5位数字（3+2）
+ 85. 匈牙利 | Hungary | HU | 有 | NNNN | 1011（布达佩斯） | 4位数字
+ 86. 罗马尼亚 | Romania | RO | 有 | NNNNNN | 010011（布加勒斯特） | 6位数字
+ 87. 保加利亚 | Bulgaria | BG | 有 | NNNN | 1000（索非亚） | 4位数字
+ 88. 希腊 | Greece | GR | 有 | NNN NN | 104 31（雅典） | 5位数字（3+2）
+ 89. 斯洛文尼亚 | Slovenia | SI | 有 | NNNN | 1000（卢布尔雅那） | 4位数字
+ 90. 克罗地亚 | Croatia | HR | 有 | NNNNN | 10000（萨格勒布） | 5位数字
+ 91. 波黑 | Bosnia and Herzegovina | BA | 有 | NNNNN | 71000（萨拉热窝） | 5位数字
+ 92. 塞尔维亚 | Serbia | RS | 有 | NNNNN | 11000（贝尔格莱德） | 5位数字
+ 93. 黑山 | Montenegro | ME | 有 | NNNNN | 81000（波德戈里察） | 5位数字
+ 94. 北马其顿 | North Macedonia | MK | 有 | NNNN | 1000（斯科普里） | 4位数字
+ 95. 阿尔巴尼亚 | Albania | AL | 有 | NNNN | 1001（地拉那） | 4位数字
+ 96. 科索沃 | Kosovo | XK | 有 | NNNNN | 10000（普里什蒂纳） | 5位数字
+ 97. 摩尔多瓦 | Moldova | MD | 有 | MD-NNNN | MD-2001（基希讷乌） | 前缀 MD- + 4位数字
+ 98. 乌克兰 | Ukraine | UA | 有 | NNNNN | 01001（基辅） | 5位数字
+ 99. 白俄罗斯 | Belarus | BY | 有 | NNNNNN | 220000（明斯克） | 6位数字
+100. 俄罗斯 | Russia | RU | 有 | NNNNNN | 101000（莫斯科） | 6位数字
+101. 根西（英） | Guernsey | GG | 有 | GYN NAA | GY1 1AA（圣彼得港） | 采用英国邮编格式，前缀 GY
+102. 泽西（英） | Jersey | JE | 有 | JEN NAA | JE1 1AA（圣赫利尔） | 采用英国邮编格式，前缀 JE
+103. 马恩岛（英） | Isle of Man | IM | 有 | IMN NAA | IM1 1AA（道格拉斯） | 采用英国邮编格式，前缀 IM
+
+【非洲】（59 个）
+----------------------------------------
+104. 埃及 | Egypt | EG | 有 | NNNNN | 11511（开罗） | 5位数字
+105. 利比亚 | Libya | LY | 无 | — | — | 不使用邮政编码
+106. 突尼斯 | Tunisia | TN | 有 | NNNN | 1000（突尼斯） | 4位数字
+107. 阿尔及利亚 | Algeria | DZ | 有 | NNNNN | 16000（阿尔及尔） | 5位数字，前2位为省号
+108. 摩洛哥 | Morocco | MA | 有 | NNNNN | 10000（拉巴特） | 5位数字
+109. 西撒哈拉 | Western Sahara | EH | 有 | 7NNNN | 70000（阿尤恩） | 使用摩洛哥邮编体系
+110. 苏丹 | Sudan | SD | 有 | NNNNN | 11111（喀土穆） | 5位数字
+111. 南苏丹 | South Sudan | SS | 无 | — | — | 不使用邮政编码
+112. 埃塞俄比亚 | Ethiopia | ET | 有 | NNNN | 1000（亚的斯亚贝巴） | 4位数字
+113. 厄立特里亚 | Eritrea | ER | 无 | — | — | 不使用邮政编码
+114. 吉布提 | Djibouti | DJ | 无 | — | — | 不使用邮政编码
+115. 索马里 | Somalia | SO | 有 | AA NNNNN | JH 09010（摩加迪沙） | 2014年起实行，2字母（州）+5位数字
+116. 肯尼亚 | Kenya | KE | 有 | NNNNN | 00100（内罗毕） | 5位数字
+117. 乌干达 | Uganda | UG | 无 | — | — | 不使用邮政编码
+118. 坦桑尼亚 | Tanzania | TZ | 有 | NNNNN | 11101（达累斯萨拉姆） | 5位数字
+119. 卢旺达 | Rwanda | RW | 无 | — | — | 不使用邮政编码
+120. 布隆迪 | Burundi | BI | 无 | — | — | 不使用邮政编码
+121. 刚果（金） | DR Congo | CD | 无 | — | — | 不使用邮政编码
+122. 刚果（布） | Republic of the Congo | CG | 无 | — | — | 不使用邮政编码
+123. 中非 | Central African Republic | CF | 无 | — | — | 不使用邮政编码
+124. 乍得 | Chad | TD | 无 | — | — | 不使用邮政编码
+125. 喀麦隆 | Cameroon | CM | 无 | — | — | 不使用邮政编码
+126. 赤道几内亚 | Equatorial Guinea | GQ | 无 | — | — | 不使用邮政编码
+127. 加蓬 | Gabon | GA | 无 | — | — | 不使用邮政编码
+128. 圣多美和普林西比 | São Tomé and Príncipe | ST | 无 | — | — | 不使用邮政编码
+129. 安哥拉 | Angola | AO | 无 | — | — | 不使用邮政编码
+130. 赞比亚 | Zambia | ZM | 有 | NNNNN | 10101（卢萨卡） | 5位数字
+131. 津巴布韦 | Zimbabwe | ZW | 无 | — | — | 不使用邮政编码
+132. 马拉维 | Malawi | MW | 无 | — | — | 无统一邮编（有6位编码方案，使用不普遍）
+133. 莫桑比克 | Mozambique | MZ | 有 | NNNN | 1100（马普托） | 4位数字
+134. 马达加斯加 | Madagascar | MG | 有 | NNN | 101（塔那那利佛） | 3位数字
+135. 毛里求斯 | Mauritius | MU | 有 | NNNNN | 11302（路易港） | 2012年起实行，5位数字
+136. 塞舌尔 | Seychelles | SC | 无 | — | — | 不使用邮政编码
+137. 科摩罗 | Comoros | KM | 无 | — | — | 不使用邮政编码
+138. 留尼汪（法） | Réunion | RE | 有 | 974NN | 97400（圣但尼） | 使用法国邮编体系
+139. 马约特（法） | Mayotte | YT | 有 | 976NN | 97600（马穆楚） | 使用法国邮编体系
+140. 南非 | South Africa | ZA | 有 | NNNN | 0001（比勒陀利亚） | 4位数字
+141. 纳米比亚 | Namibia | NA | 有 | NNNNN | 10001（温得和克） | 2019年起实行，5位数字
+142. 博茨瓦纳 | Botswana | BW | 无 | — | — | 不使用邮政编码
+143. 莱索托 | Lesotho | LS | 有 | NNN | 100（马塞卢） | 3位数字
+144. 斯威士兰 | Eswatini | SZ | 有 | ANNN | H100（姆巴巴内） | 1字母（区）+3位数字
+145. 尼日利亚 | Nigeria | NG | 有 | NNNNNN | 900001（阿布贾） | 6位数字
+146. 加纳 | Ghana | GH | 无 | — | GA-183-8164（GhanaPostGPS 示例） | 无传统邮编；2017年起推行 GhanaPostGPS 数字地址
+147. 科特迪瓦 | Côte d'Ivoire | CI | 无 | — | — | 不使用邮政编码
+148. 利比里亚 | Liberia | LR | 有 | NNNN | 1000（蒙罗维亚） | 4位数字
+149. 塞拉利昂 | Sierra Leone | SL | 无 | — | — | 不使用邮政编码
+150. 几内亚 | Guinea | GN | 有 | NNN | — | 3位数字，使用不普遍
+151. 几内亚比绍 | Guinea-Bissau | GW | 有 | NNNN | 1000（比绍） | 4位数字
+152. 塞内加尔 | Senegal | SN | 有 | NNNNN | 10000（达喀尔） | 5位数字
+153. 冈比亚 | Gambia | GM | 无 | — | — | 不使用邮政编码
+154. 马里 | Mali | ML | 无 | — | — | 不使用邮政编码
+155. 毛里塔尼亚 | Mauritania | MR | 无 | — | — | 不使用邮政编码
+156. 尼日尔 | Niger | NE | 有 | NNNN | 8001（尼亚美） | 4位数字
+157. 布基纳法索 | Burkina Faso | BF | 无 | — | — | 不使用邮政编码
+158. 贝宁 | Benin | BJ | 无 | — | — | 不使用邮政编码
+159. 多哥 | Togo | TG | 无 | — | — | 不使用邮政编码
+160. 佛得角 | Cape Verde | CV | 有 | NNNN | 7600（普拉亚） | 4位数字
+161. 圣赫勒拿、阿森松和特里斯坦-达库尼亚（英） | Saint Helena, Ascension and Tristan da Cunha | SH | 有 | STHL 1ZZ / ASCN 1ZZ / TDCU 1ZZ | STHL 1ZZ（圣赫勒拿） | 三个岛各一个固定邮编
+162. 英属印度洋领地 | British Indian Ocean Territory | IO | 有 | BBND 1ZZ | BBND 1ZZ | 单一邮编
+
+【北美洲】（41 个）
+----------------------------------------
+163. 格陵兰（丹） | Greenland | GL | 有 | NNNN | 3900（努克） | 使用丹麦邮编体系，39NN
+164. 美国 | United States | US | 有 | NNNNN(-NNNN) | 20500（华盛顿） | 5位 ZIP 码，可加4位扩展码（ZIP+4）
+165. 加拿大 | Canada | CA | 有 | ANA NAN | K1A 0B1（渥太华） | 字母数字交替，共6位
+166. 墨西哥 | Mexico | MX | 有 | NNNNN | 06000（墨西哥城） | 5位数字
+167. 危地马拉 | Guatemala | GT | 有 | NNNNN | 01001（危地马拉城） | 5位数字
+168. 伯利兹 | Belize | BZ | 无 | — | — | 不使用邮政编码
+169. 萨尔瓦多 | El Salvador | SV | 有 | NNNN | 1101（圣萨尔瓦多） | 4位数字，常加前缀 CP
+170. 洪都拉斯 | Honduras | HN | 有 | NNNNN | 11101（特古西加尔巴） | 5位数字
+171. 尼加拉瓜 | Nicaragua | NI | 有 | NNNNN | 11001（马那瓜） | 5位数字
+172. 哥斯达黎加 | Costa Rica | CR | 有 | NNNNN | 10101（圣何塞） | 5位数字
+173. 巴拿马 | Panama | PA | 有 | NNNN | 0801（巴拿马城） | 4位数字
+174. 古巴 | Cuba | CU | 有 | NNNNN | 10100（哈瓦那） | 5位数字，常加前缀 CP
+175. 牙买加 | Jamaica | JM | 无 | — | — | 2007年试行后停用；金斯敦使用“Kingston 1–20”邮区号
+176. 海地 | Haiti | HT | 有 | HTNNNN | HT6110（太子港） | 前缀 HT + 4位数字
+177. 多米尼加 | Dominican Republic | DO | 有 | NNNNN | 10101（圣多明各） | 5位数字
+178. 波多黎各（美） | Puerto Rico | PR | 有 | NNNNN(-NNNN) | 00901（圣胡安） | 使用美国 ZIP 码体系，006NN–009NN
+179. 美属维尔京群岛 | U.S. Virgin Islands | VI | 有 | NNNNN(-NNNN) | 00802（夏洛特阿马利亚） | 使用美国 ZIP 码体系，008NN
+180. 巴哈马 | Bahamas | BS | 无 | — | — | 不使用邮政编码
+181. 特克斯和凯科斯群岛（英） | Turks and Caicos Islands | TC | 有 | TKCA 1ZZ | TKCA 1ZZ | 单一邮编
+182. 开曼群岛（英） | Cayman Islands | KY | 有 | KYN-NNNN | KY1-1001（乔治敦） | 前缀 KY + 岛号 + 4位数字
+183. 百慕大（英） | Bermuda | BM | 有 | AA NN / AA AA | HM 12（哈密尔顿） | 2字母+2数字（街道）或2字母+2字母（信箱）
+184. 安圭拉（英） | Anguilla | AI | 有 | AI-2640 | AI-2640 | 单一邮编
+185. 英属维尔京群岛 | British Virgin Islands | VG | 有 | VGNNNN | VG1110（罗德城） | 前缀 VG + 4位数字
+186. 蒙特塞拉特（英） | Montserrat | MS | 有 | MSR NNNN | MSR 1110（布莱兹） | 前缀 MSR + 4位数字，1110–1350
+187. 安提瓜和巴布达 | Antigua and Barbuda | AG | 无 | — | — | 不使用邮政编码
+188. 圣基茨和尼维斯 | Saint Kitts and Nevis | KN | 无 | — | — | 无统一邮编
+189. 多米尼克 | Dominica | DM | 无 | — | — | 不使用邮政编码
+190. 圣卢西亚 | Saint Lucia | LC | 有 | LCNN NNN | LC01 101（格式示例） | 2016年起实行，前缀 LC + 2位区号 + 3位数字
+191. 圣文森特和格林纳丁斯 | Saint Vincent and the Grenadines | VC | 有 | VCNNNN | VC0100（金斯敦） | 前缀 VC + 4位数字
+192. 格林纳达 | Grenada | GD | 无 | — | — | 不使用邮政编码
+193. 巴巴多斯 | Barbados | BB | 有 | BBNNNNN | BB11000（布里奇敦） | 前缀 BB + 5位数字
+194. 特立尼达和多巴哥 | Trinidad and Tobago | TT | 有 | NNNNNN | — | 6位数字，2012年起推行，使用尚不普遍
+195. 阿鲁巴（荷） | Aruba | AW | 无 | — | — | 不使用邮政编码
+196. 库拉索（荷） | Curaçao | CW | 无 | — | — | 不使用邮政编码
+197. 荷属圣马丁 | Sint Maarten | SX | 无 | — | — | 不使用邮政编码
+198. 荷属加勒比区（博奈尔、圣尤斯特歇斯和萨巴） | Caribbean Netherlands | BQ | 无 | — | — | 不使用邮政编码
+199. 瓜德罗普（法） | Guadeloupe | GP | 有 | 971NN | 97100（巴斯特尔） | 使用法国邮编体系
+200. 马提尼克（法） | Martinique | MQ | 有 | 972NN | 97200（法兰西堡） | 使用法国邮编体系
+201. 圣巴泰勒米（法） | Saint Barthélemy | BL | 有 | 97133 | 97133 | 单一邮编，法国邮编体系
+202. 法属圣马丁 | Saint Martin | MF | 有 | 97150 | 97150 | 单一邮编，法国邮编体系
+203. 圣皮埃尔和密克隆（法） | Saint Pierre and Miquelon | PM | 有 | 975NN | 97500（圣皮埃尔） | 使用法国邮编体系
+
+【南美洲】（14 个）
+----------------------------------------
+204. 巴西 | Brazil | BR | 有 | NNNNN-NNN | 70040-010（巴西利亚） | 8位数字（CEP，5+3）
+205. 阿根廷 | Argentina | AR | 有 | ANNNNAAA | C1001AAA（布宜诺斯艾利斯） | 1字母（省）+4数字+3字母（CPA）；旧制4位数字仍常用
+206. 智利 | Chile | CL | 有 | NNNNNNN | 8320000（圣地亚哥） | 7位数字
+207. 哥伦比亚 | Colombia | CO | 有 | NNNNNN | 110111（波哥大） | 6位数字
+208. 秘鲁 | Peru | PE | 有 | NNNNN | 15001（利马） | 5位数字
+209. 委内瑞拉 | Venezuela | VE | 有 | NNNN(-A) | 1010（加拉加斯） | 4位数字，可加1位字母
+210. 厄瓜多尔 | Ecuador | EC | 有 | NNNNNN | 170150（基多） | 6位数字
+211. 玻利维亚 | Bolivia | BO | 无 | — | — | 不使用邮政编码
+212. 巴拉圭 | Paraguay | PY | 有 | NNNN | 1209（亚松森） | 4位数字
+213. 乌拉圭 | Uruguay | UY | 有 | NNNNN | 11000（蒙得维的亚） | 5位数字
+214. 圭亚那 | Guyana | GY | 无 | — | — | 不使用邮政编码
+215. 苏里南 | Suriname | SR | 无 | — | — | 不使用邮政编码
+216. 法属圭亚那 | French Guiana | GF | 有 | 973NN | 97300（卡宴） | 使用法国邮编体系
+217. 福克兰群岛（马尔维纳斯群岛） | Falkland Islands | FK | 有 | FIQQ 1ZZ | FIQQ 1ZZ | 单一邮编
+
+【大洋洲】（28 个）
+----------------------------------------
+218. 美国本土外小岛屿 | U.S. Minor Outlying Islands | UM | 有 | NNNNN | 96898（威克岛） | 使用美国 ZIP 码体系
+219. 澳大利亚 | Australia | AU | 有 | NNNN | 2600（堪培拉） | 4位数字
+220. 新西兰 | New Zealand | NZ | 有 | NNNN | 6011（惠灵顿） | 4位数字
+221. 巴布亚新几内亚 | Papua New Guinea | PG | 有 | NNN | 111（莫尔兹比港） | 3位数字
+222. 斐济 | Fiji | FJ | 无 | — | — | 不使用邮政编码
+223. 所罗门群岛 | Solomon Islands | SB | 无 | — | — | 不使用邮政编码
+224. 瓦努阿图 | Vanuatu | VU | 无 | — | — | 不使用邮政编码
+225. 萨摩亚 | Samoa | WS | 有 | WSNNNN | WS1330（阿皮亚） | 前缀 WS + 4位数字
+226. 汤加 | Tonga | TO | 无 | — | — | 不使用邮政编码
+227. 基里巴斯 | Kiribati | KI | 无 | — | — | 不使用邮政编码
+228. 图瓦卢 | Tuvalu | TV | 无 | — | — | 不使用邮政编码
+229. 瑙鲁 | Nauru | NR | 有 | NRU68 | NRU68 | 单一邮编
+230. 密克罗尼西亚联邦 | Micronesia | FM | 有 | 969NN | 96941（帕利基尔） | 使用美国 ZIP 码体系
+231. 马绍尔群岛 | Marshall Islands | MH | 有 | 969NN | 96960（马朱罗） | 使用美国 ZIP 码体系
+232. 帕劳 | Palau | PW | 有 | 96940 | 96940 | 单一邮编，使用美国 ZIP 码体系
+233. 关岛（美） | Guam | GU | 有 | 969NN | 96910（阿加尼亚） | 使用美国 ZIP 码体系
+234. 北马里亚纳群岛（美） | Northern Mariana Islands | MP | 有 | 9695N | 96950（塞班） | 使用美国 ZIP 码体系
+235. 美属萨摩亚 | American Samoa | AS | 有 | 96799 | 96799（帕果帕果） | 单一邮编，使用美国 ZIP 码体系
+236. 库克群岛 | Cook Islands | CK | 无 | — | — | 不使用邮政编码
+237. 纽埃 | Niue | NU | 有 | 9974 | 9974 | 单一邮编（新西兰体系）
+238. 托克劳 | Tokelau | TK | 无 | — | — | 不使用邮政编码
+239. 皮特凯恩群岛（英） | Pitcairn Islands | PN | 有 | PCRN 1ZZ | PCRN 1ZZ | 单一邮编
+240. 新喀里多尼亚（法） | New Caledonia | NC | 有 | 988NN | 98800（努美阿） | 使用法国邮编体系
+241. 法属波利尼西亚 | French Polynesia | PF | 有 | 987NN | 98713（帕皮提） | 使用法国邮编体系
+242. 瓦利斯和富图纳（法） | Wallis and Futuna | WF | 有 | 986NN | 98600（马塔乌图） | 使用法国邮编体系
+243. 诺福克岛（澳） | Norfolk Island | NF | 有 | 2899 | 2899 | 单一邮编，澳大利亚体系
+244. 圣诞岛（澳） | Christmas Island | CX | 有 | 6798 | 6798 | 单一邮编，澳大利亚体系
+245. 科科斯（基林）群岛（澳） | Cocos (Keeling) Islands | CC | 有 | 6799 | 6799 | 单一邮编，澳大利亚体系
+
+【南极洲】（5 个）
+----------------------------------------
+246. 布韦岛（挪） | Bouvet Island | BV | 无 | — | — | 无人居住，不使用邮政编码
+247. 南乔治亚和南桑威奇群岛（英） | South Georgia and the South Sandwich Islands | GS | 有 | SIQQ 1ZZ | SIQQ 1ZZ | 单一邮编
+248. 法属南部和南极领地 | French Southern Territories | TF | 有 | 984NN | 98411（阿姆斯特丹岛，格式示例） | 使用法国邮编体系，无常住居民
+249. 赫德岛和麦克唐纳群岛（澳） | Heard Island and McDonald Islands | HM | 无 | — | — | 无人居住，不使用邮政编码
+250. 南极洲 | Antarctica | AQ | 无 | — | — | 各国考察站沿用本国邮编（如澳大利亚站点 7151、法国站点 984NN）
+
+
+数据说明
+----------------------------------------
+1. 来源：万国邮联（UPU）各国邮编规范及各国邮政官方资料，并与 GitHub 开源数据集 dr5hn/countries-states-cities-database、willfarrell/upu-postcode 交叉核对。
+2. 香港、澳门本地不使用邮编；内地寄往港澳按中国邮政规定分别填写 999077、999078。
+3. 部分国家（韩国、越南、柬埔寨、以色列、蒙古等）近年更换过编码体系，新旧编码可能并存，表中以现行体系为准并注明旧制。
