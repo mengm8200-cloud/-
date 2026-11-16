@@ -1,0 +1,135 @@
+# Builds the iOS app and, once the signing secrets below are configured,
+# signs it and uploads it to TestFlight.
+#
+# Repository secrets (Settings → Secrets and variables → Actions):
+#   ASC_KEY_ID       App Store Connect API key ID
+#   ASC_ISSUER_ID    App Store Connect API issuer ID
+#   ASC_PRIVATE_KEY  Contents of the AuthKey_XXXXXXXXXX.p8 file
+#   APPLE_TEAM_ID    10-character Apple Developer team ID
+#
+# Without the secrets the workflow still compiles the app, so build errors
+# show up before any Apple account setup is done.
+name: iOS TestFlight
+
+on:
+  push:
+    branches: [main, "claude/**"]
+    paths:
+      - "ios/**"
+      - ".github/workflows/ios-testflight.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ios-testflight-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build and upload
+    runs-on: macos-26
+    timeout-minutes: 30
+    defaults:
+      run:
+        shell: bash
+        working-directory: ios
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Show Xcode version
+        run: xcodebuild -version
+
+      - name: Install XcodeGen
+        env:
+          HOMEBREW_NO_AUTO_UPDATE: "1"
+          HOMEBREW_NO_INSTALL_CLEANUP: "1"
+        run: command -v xcodegen || brew install xcodegen
+
+      - name: Generate Xcode project
+        run: xcodegen generate
+
+      # Archived unsigned: signing happens at export time with a cloud-managed
+      # distribution certificate, so no certificate has to live on the runner.
+      - name: Archive
+        run: |
+          xcodebuild archive \
+            -project TodoApp.xcodeproj \
+            -scheme TodoApp \
+            -configuration Release \
+            -destination 'generic/platform=iOS' \
+            -archivePath "$RUNNER_TEMP/TodoApp.xcarchive" \
+            -quiet \
+            CURRENT_PROJECT_VERSION="$(date -u +%Y%m%d%H%M)" \
+            CODE_SIGNING_ALLOWED=NO
+
+      - name: Check signing secrets
+        id: signing
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          ASC_PRIVATE_KEY: ${{ secrets.ASC_PRIVATE_KEY }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+        run: |
+          missing=()
+          [ -n "$ASC_KEY_ID" ] || missing+=(ASC_KEY_ID)
+          [ -n "$ASC_ISSUER_ID" ] || missing+=(ASC_ISSUER_ID)
+          [ -n "$ASC_PRIVATE_KEY" ] || missing+=(ASC_PRIVATE_KEY)
+          [ -n "$APPLE_TEAM_ID" ] || missing+=(APPLE_TEAM_ID)
+          if [ "${#missing[@]}" -eq 0 ]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "::warning::Build succeeded, TestFlight upload skipped. Missing secrets: ${missing[*]}"
+          fi
+
+      - name: Sign and upload to TestFlight
+        if: steps.signing.outputs.ready == 'true'
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          ASC_PRIVATE_KEY: ${{ secrets.ASC_PRIVATE_KEY }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+        run: |
+          trim() { printf '%s' "$1" | tr -d '[:space:]'; }
+          key_id=$(trim "$ASC_KEY_ID")
+          issuer_id=$(trim "$ASC_ISSUER_ID")
+          team_id=$(trim "$APPLE_TEAM_ID")
+
+          key_dir="$RUNNER_TEMP/asc"
+          mkdir -p "$key_dir"
+          key_path="$key_dir/AuthKey_${key_id}.p8"
+
+          # Rebuild the PEM so a secret pasted with collapsed or missing line
+          # breaks still yields a valid key file.
+          body=$(printf '%s' "$ASC_PRIVATE_KEY" \
+            | sed -e 's/-----BEGIN PRIVATE KEY-----//' -e 's/-----END PRIVATE KEY-----//' \
+            | tr -d '[:space:]')
+          {
+            echo '-----BEGIN PRIVATE KEY-----'
+            printf '%s\n' "$body" | fold -w 64
+            echo '-----END PRIVATE KEY-----'
+          } > "$key_path"
+          chmod 600 "$key_path"
+          if ! openssl pkey -in "$key_path" -noout 2>/dev/null; then
+            echo "::error::ASC_PRIVATE_KEY is not a valid .p8 key. Paste the full contents of the AuthKey_XXXXXXXXXX.p8 file."
+            exit 1
+          fi
+
+          options="$RUNNER_TEMP/ExportOptions.plist"
+          cp ExportOptions.plist "$options"
+          plutil -insert teamID -string "$team_id" "$options"
+
+          xcodebuild -exportArchive \
+            -archivePath "$RUNNER_TEMP/TodoApp.xcarchive" \
+            -exportOptionsPlist "$options" \
+            -exportPath "$RUNNER_TEMP/export" \
+            -allowProvisioningUpdates \
+            -authenticationKeyPath "$key_path" \
+            -authenticationKeyID "$key_id" \
+            -authenticationKeyIssuerID "$issuer_id"
+
+      - name: Remove API key
+        if: always()
+        run: rm -rf "$RUNNER_TEMP/asc"
