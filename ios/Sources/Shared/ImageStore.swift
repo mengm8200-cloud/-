@@ -6,11 +6,14 @@ enum MediaRef: Hashable {
     case avatar(String)
     /// Path inside the private "chat-media" bucket.
     case chat(String)
+    /// Path inside the private "post-media" bucket.
+    case post(String)
 
     fileprivate var cacheKey: String {
         switch self {
         case .avatar(let path): return "avatars_" + path.replacingOccurrences(of: "/", with: "_")
         case .chat(let path): return "chat_" + path.replacingOccurrences(of: "/", with: "_")
+        case .post(let path): return "post_" + path.replacingOccurrences(of: "/", with: "_")
         }
     }
 }
@@ -50,6 +53,8 @@ final class ImageStore {
             data = try await URLSession.shared.data(from: url).0
         case .chat(let path):
             data = try await Backend.shared.download(bucket: "chat-media", path: path)
+        case .post(let path):
+            data = try await Backend.shared.download(bucket: "post-media", path: path)
         }
         guard let image = UIImage(data: data) else {
             throw BackendError(status: 0, code: "image", message: "图片无法显示")

@@ -89,6 +89,28 @@ struct Message: Decodable, Identifiable, Hashable {
     let createdAt: Date
 }
 
+/// A moment in the feed, with the likes and comments this viewer may see.
+struct Post: Decodable, Identifiable, Hashable {
+    struct Comment: Decodable, Identifiable, Hashable {
+        let id: UUID
+        let authorId: UUID
+        let authorName: String
+        let body: String
+        let createdAt: Date
+    }
+
+    let id: UUID
+    let authorId: UUID
+    let authorName: String
+    let authorAvatarPath: String?
+    let body: String
+    let imagePaths: [String]
+    let createdAt: Date
+    var likedByMe: Bool
+    var likerNames: [String]
+    var comments: [Comment]
+}
+
 enum ServerDate {
     private static let withFraction: ISO8601DateFormatter = {
         let formatter = ISO8601DateFormatter()

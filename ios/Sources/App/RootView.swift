@@ -51,6 +51,8 @@ struct MainTabView: View {
             ContactsView()
                 .tabItem { Label("联系人", systemImage: "person.2.fill") }
                 .badge(store.requests.count)
+            MomentsView()
+                .tabItem { Label("动态", systemImage: "photo.on.rectangle.angled") }
             MeView()
                 .tabItem { Label("我", systemImage: "person.crop.circle.fill") }
         }

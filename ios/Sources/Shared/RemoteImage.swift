@@ -83,6 +83,35 @@ struct GroupAvatarView: View {
     }
 }
 
+/// Full-screen picture viewer; tap anywhere to close.
+struct ImageViewer: View {
+    @Environment(\.dismiss) private var dismiss
+    let ref: MediaRef?
+
+    var body: some View {
+        ZStack(alignment: .topTrailing) {
+            Color.black.ignoresSafeArea()
+            RemoteImage(ref, contentMode: .fit) {
+                ProgressView()
+                    .tint(.white)
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .contentShape(Rectangle())
+            .onTapGesture { dismiss() }
+
+            Button {
+                dismiss()
+            } label: {
+                Image(systemName: "xmark.circle.fill")
+                    .font(.system(size: 30))
+                    .foregroundStyle(Color.white.opacity(0.85))
+                    .padding(16)
+            }
+            .accessibilityLabel("关闭")
+        }
+    }
+}
+
 /// Rounded, filled text input used on the sign-in and profile forms.
 struct InputFieldStyle: ViewModifier {
     func body(content: Content) -> some View {
@@ -141,6 +170,21 @@ enum ChatTime {
             return monthDay.string(from: date)
         }
         return fullDay.string(from: date)
+    }
+
+    /// How long ago something was posted.
+    static func relative(_ date: Date) -> String {
+        let seconds = Date().timeIntervalSince(date)
+        if seconds < 60 {
+            return "刚刚"
+        }
+        if seconds < 3600 {
+            return "\(Int(seconds / 60)) 分钟前"
+        }
+        if calendar.isDateInToday(date) {
+            return "\(Int(seconds / 3600)) 小时前"
+        }
+        return full(date)
     }
 
     /// Longer form for separators inside a chat.

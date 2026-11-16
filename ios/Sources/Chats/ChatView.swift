@@ -108,7 +108,7 @@ struct ChatView: View {
             GroupMembersView(title: target.title, members: model.sortedMembers)
         }
         .fullScreenCover(item: $viewedImage) { message in
-            ImageViewer(path: message.mediaPath)
+            ImageViewer(ref: message.mediaPath.map { MediaRef.chat($0) })
         }
         .errorAlert("出错了", message: $model.errorText)
         .onChange(of: pickedPhoto) { _, item in
@@ -276,34 +276,6 @@ private struct MessageBubble: View {
                 .padding(.vertical, 8)
                 .background(Color(.secondarySystemBackground))
                 .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-        }
-    }
-}
-
-private struct ImageViewer: View {
-    @Environment(\.dismiss) private var dismiss
-    let path: String?
-
-    var body: some View {
-        ZStack(alignment: .topTrailing) {
-            Color.black.ignoresSafeArea()
-            RemoteImage(path.map { MediaRef.chat($0) }, contentMode: .fit) {
-                ProgressView()
-                    .tint(.white)
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .contentShape(Rectangle())
-            .onTapGesture { dismiss() }
-
-            Button {
-                dismiss()
-            } label: {
-                Image(systemName: "xmark.circle.fill")
-                    .font(.system(size: 30))
-                    .foregroundStyle(Color.white.opacity(0.85))
-                    .padding(16)
-            }
-            .accessibilityLabel("关闭")
         }
     }
 }

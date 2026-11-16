@@ -124,6 +124,26 @@ actor Backend {
         return try Backend.decode(T.self, from: data)
     }
 
+    /// Inserts a row without reading it back.
+    func insert(_ table: String, values: [String: JSONValue]) async throws {
+        let body = try Backend.encode(values)
+        _ = try await authorized(
+            path: "rest/v1/\(table)", method: "POST",
+            headers: ["Prefer": "return=minimal"], body: body
+        )
+    }
+
+    /// Deletes the rows matching `match`. A filter is required so a call can never empty a table.
+    func delete(_ table: String, match: [URLQueryItem]) async throws {
+        guard !match.isEmpty else {
+            throw BackendError(status: 0, code: "unfiltered_delete", message: "操作失败")
+        }
+        _ = try await authorized(
+            path: "rest/v1/\(table)", method: "DELETE", query: match,
+            headers: ["Prefer": "return=minimal"]
+        )
+    }
+
     func update(_ table: String, match: [URLQueryItem], values: [String: JSONValue]) async throws {
         let body = try Backend.encode(values)
         _ = try await authorized(
