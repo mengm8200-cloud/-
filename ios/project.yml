@@ -1,10 +1,10 @@
-name: TodoApp
+name: ChatApp
 options:
   deploymentTarget:
-    iOS: "16.0"
+    iOS: "17.0"
   createIntermediateGroups: true
 targets:
-  TodoApp:
+  ChatApp:
     type: application
     platform: iOS
     sources:
@@ -12,7 +12,7 @@ targets:
     settings:
       base:
         # Must match the Bundle ID registered in the Apple Developer portal.
-        PRODUCT_BUNDLE_IDENTIFIER: com.mengm8200.todo
+        PRODUCT_BUNDLE_IDENTIFIER: com.mengm8200.chat
         MARKETING_VERSION: "1.0.0"
         CURRENT_PROJECT_VERSION: "1"
         SWIFT_VERSION: "5.0"
@@ -20,16 +20,16 @@ targets:
         GENERATE_INFOPLIST_FILE: YES
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
-        INFOPLIST_KEY_CFBundleDisplayName: 待办清单
+        INFOPLIST_KEY_CFBundleDisplayName: 小聊
         INFOPLIST_KEY_UILaunchScreen_Generation: YES
         INFOPLIST_KEY_UISupportedInterfaceOrientations: UIInterfaceOrientationPortrait
-        INFOPLIST_KEY_LSApplicationCategoryType: public.app-category.productivity
+        INFOPLIST_KEY_LSApplicationCategoryType: public.app-category.social-networking
         # Only standard HTTPS/OS crypto: skips the export-compliance prompt in TestFlight.
         INFOPLIST_KEY_ITSAppUsesNonExemptEncryption: NO
 schemes:
-  TodoApp:
+  ChatApp:
     build:
       targets:
-        TodoApp: all
+        ChatApp: all
     archive:
       config: Release

@@ -55,11 +55,11 @@ jobs:
       - name: Archive
         run: |
           xcodebuild archive \
-            -project TodoApp.xcodeproj \
-            -scheme TodoApp \
+            -project ChatApp.xcodeproj \
+            -scheme ChatApp \
             -configuration Release \
             -destination 'generic/platform=iOS' \
-            -archivePath "$RUNNER_TEMP/TodoApp.xcarchive" \
+            -archivePath "$RUNNER_TEMP/ChatApp.xcarchive" \
             -quiet \
             CURRENT_PROJECT_VERSION="$(date -u +%Y%m%d%H%M)" \
             CODE_SIGNING_ALLOWED=NO
@@ -122,7 +122,7 @@ jobs:
           plutil -insert teamID -string "$team_id" "$options"
 
           xcodebuild -exportArchive \
-            -archivePath "$RUNNER_TEMP/TodoApp.xcarchive" \
+            -archivePath "$RUNNER_TEMP/ChatApp.xcarchive" \
             -exportOptionsPlist "$options" \
             -exportPath "$RUNNER_TEMP/export" \
             -allowProvisioningUpdates \
