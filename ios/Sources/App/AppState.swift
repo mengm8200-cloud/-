@@ -41,6 +41,7 @@ final class AppState: ObservableObject {
                 me = Demo.me
                 phase = .ready
             }
+            Demo.markReady()
             return
         }
         #endif

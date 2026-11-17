@@ -18,8 +18,10 @@ final class ChatStore: ObservableObject {
     func refreshConversations() async {
         #if DEBUG
         if Demo.isEnabled {
-            conversations = Demo.conversations
-            hasLoadedConversations = true
+            if !hasLoadedConversations {
+                conversations = Demo.conversations
+                hasLoadedConversations = true
+            }
             return
         }
         #endif
@@ -35,9 +37,11 @@ final class ChatStore: ObservableObject {
     func refreshContacts() async {
         #if DEBUG
         if Demo.isEnabled {
-            friends = Demo.friends
-            requests = Demo.requests
-            hasLoadedContacts = true
+            if !hasLoadedContacts {
+                friends = Demo.friends
+                requests = Demo.requests
+                hasLoadedContacts = true
+            }
             return
         }
         #endif

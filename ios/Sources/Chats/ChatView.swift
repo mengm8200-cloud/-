@@ -69,7 +69,7 @@ struct ChatView: View {
                 .padding(.horizontal, 12)
                 .padding(.vertical, 10)
             }
-            .defaultScrollAnchor(.bottom)
+            .chatScrollAnchors()
             .scrollDismissesKeyboard(.interactively)
             .onChange(of: model.messages.last?.id) { _, newest in
                 guard let newest else { return }
@@ -274,6 +274,23 @@ struct ChatView: View {
                 return
             }
             await model.sendImage(data, from: senderId)
+        }
+    }
+}
+
+private extension View {
+    /// Opens a chat at its newest message and follows new ones, while a
+    /// conversation shorter than the screen stays at the top.
+    @ViewBuilder
+    func chatScrollAnchors() -> some View {
+        if #available(iOS 18.0, *) {
+            self
+                .defaultScrollAnchor(.bottom, for: .initialOffset)
+                .defaultScrollAnchor(.bottom, for: .sizeChanges)
+                .defaultScrollAnchor(.top, for: .alignment)
+        } else {
+            // iOS 17 has a single anchor, so short conversations rest at the bottom there.
+            self.defaultScrollAnchor(.bottom)
         }
     }
 }

@@ -22,6 +22,12 @@ enum Demo {
         Date().addingTimeInterval(-minutes * 60)
     }
 
+    /// Leaves a marker file the screenshot script waits for before capturing.
+    static func markReady() {
+        let documents = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        try? Data().write(to: documents.appendingPathComponent("demo-ready"))
+    }
+
     // MARK: - People
 
     static let me = Profile(
