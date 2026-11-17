@@ -155,6 +155,36 @@ final class ChatModel: ObservableObject {
         }
     }
 
+    func sendVoice(fileURL: URL, durationMs: Int, from senderId: UUID) async {
+        pendingSends += 1
+        defer {
+            pendingSends -= 1
+            try? FileManager.default.removeItem(at: fileURL)
+        }
+        do {
+            let data = try Data(contentsOf: fileURL)
+            let path = "\(conversationId.lower)/\(UUID().lower).m4a"
+            try await Backend.shared.upload(
+                bucket: "chat-media", path: path, data: data, contentType: "audio/mp4"
+            )
+            VoiceCache.store(data, for: path)
+            let sent: Message = try await Backend.shared.insert(
+                "messages",
+                values: [
+                    "conversation_id": .uuid(conversationId),
+                    "sender_id": .uuid(senderId),
+                    "kind": .string("voice"),
+                    "media_path": .string(path),
+                    "duration_ms": .int(durationMs),
+                ],
+                returning: Message.columns
+            )
+            merge([sent])
+        } catch {
+            errorText = error.userMessage
+        }
+    }
+
     // MARK: - Merging
 
     /// Adds messages that are not on screen yet, keeping the list ordered by sequence number.

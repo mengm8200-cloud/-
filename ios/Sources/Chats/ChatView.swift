@@ -8,6 +8,7 @@ struct ChatView: View {
     @EnvironmentObject private var store: ChatStore
     @Environment(\.scenePhase) private var scenePhase
     @StateObject private var model: ChatModel
+    @StateObject private var recorder = VoiceRecorder()
 
     @State private var draft = ""
     @State private var pickedPhoto: PhotosPickerItem?
@@ -87,7 +88,20 @@ struct ChatView: View {
             }
         }
         .safeAreaInset(edge: .bottom, spacing: 0) {
-            inputBar
+            Group {
+                if recorder.isRecording {
+                    recordingBar
+                } else {
+                    inputBar
+                }
+            }
+            .padding(.horizontal, 12)
+            .padding(.vertical, 8)
+            .background(.bar)
+        }
+        .onDisappear {
+            recorder.cancel()
+            VoicePlayer.shared.stop()
         }
         .navigationTitle(target.title)
         .navigationBarTitleDisplayMode(.inline)
@@ -155,6 +169,13 @@ struct ChatView: View {
             }
             .accessibilityLabel("发送图片")
 
+            Button(action: startRecording) {
+                Image(systemName: "mic")
+                    .font(.system(size: 22))
+                    .frame(width: 36, height: 36)
+            }
+            .accessibilityLabel("录制语音")
+
             TextField("发消息", text: $draft, axis: .vertical)
                 .lineLimit(1...5)
                 .padding(.horizontal, 12)
@@ -175,9 +196,61 @@ struct ChatView: View {
                 .accessibilityLabel("发送")
             }
         }
-        .padding(.horizontal, 12)
-        .padding(.vertical, 8)
-        .background(.bar)
+    }
+
+    /// Replaces the text input while a voice clip is being recorded.
+    private var recordingBar: some View {
+        HStack(spacing: 12) {
+            Button {
+                recorder.cancel()
+            } label: {
+                Image(systemName: "xmark.circle.fill")
+                    .font(.system(size: 30))
+                    .foregroundStyle(Color.secondary)
+                    .frame(width: 36, height: 36)
+            }
+            .accessibilityLabel("取消录音")
+
+            HStack(spacing: 8) {
+                Circle()
+                    .fill(Color.red)
+                    .frame(width: 10, height: 10)
+                Text("正在录音 \(Int(recorder.elapsed))″ / \(Int(VoiceRecorder.maxDuration))″")
+                    .font(.subheadline)
+                    .monospacedDigit()
+            }
+            .frame(maxWidth: .infinity)
+
+            Button(action: sendVoice) {
+                Image(systemName: "arrow.up.circle.fill")
+                    .font(.system(size: 32))
+                    .frame(width: 36, height: 36)
+            }
+            .accessibilityLabel("发送语音")
+        }
+    }
+
+    private func startRecording() {
+        VoicePlayer.shared.stop()
+        Task {
+            if let failure = await recorder.start() {
+                model.errorText = failure
+            }
+        }
+    }
+
+    private func sendVoice() {
+        guard let senderId = app.me?.id else {
+            recorder.cancel()
+            return
+        }
+        guard let clip = recorder.finish() else {
+            model.errorText = "说话时间太短"
+            return
+        }
+        Task {
+            await model.sendVoice(fileURL: clip.url, durationMs: clip.durationMs, from: senderId)
+        }
     }
 
     private func sendText() {
@@ -268,6 +341,8 @@ private struct MessageBubble: View {
             }
             .buttonStyle(.plain)
             .accessibilityLabel("图片消息")
+        case .voice:
+            VoiceBubble(message: message, isMine: isMine)
         case .unsupported:
             Text("当前版本不支持这种消息，请更新 App")
                 .font(.footnote)

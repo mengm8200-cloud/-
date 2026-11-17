@@ -4,6 +4,7 @@ import SwiftUI
 struct MeView: View {
     @EnvironmentObject private var app: AppState
     @State private var confirmsSignOut = false
+    @State private var showsMyCode = false
 
     private var version: String {
         let info = Bundle.main.infoDictionary
@@ -39,7 +40,17 @@ struct MeView: View {
                             .padding(.vertical, 6)
                         }
                     } footer: {
-                        Text("把聊天号告诉朋友，对方就可以搜索并添加你。")
+                        Text("把聊天号告诉朋友，或者让对方扫你的二维码，就可以添加你。")
+                    }
+                    Section {
+                        Button {
+                            showsMyCode = true
+                        } label: {
+                            Label("我的二维码", systemImage: "qrcode")
+                        }
+                    }
+                    .sheet(isPresented: $showsMyCode) {
+                        MyCodeView(profile: me)
                     }
                 }
                 Section {

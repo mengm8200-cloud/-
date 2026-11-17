@@ -22,6 +22,8 @@ targets:
         ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
         INFOPLIST_KEY_CFBundleDisplayName: 小聊
         INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_NSMicrophoneUsageDescription: 录制语音消息时需要使用麦克风。
+        INFOPLIST_KEY_NSCameraUsageDescription: 扫描好友二维码时需要使用相机。
         INFOPLIST_KEY_UISupportedInterfaceOrientations: UIInterfaceOrientationPortrait
         INFOPLIST_KEY_LSApplicationCategoryType: public.app-category.social-networking
         # Only standard HTTPS/OS crypto: skips the export-compliance prompt in TestFlight.

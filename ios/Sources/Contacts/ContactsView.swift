@@ -193,6 +193,7 @@ struct AddFriendView: View {
     @State private var result: UserLookup?
     @State private var hasSearched = false
     @State private var isWorking = false
+    @State private var showsScanner = false
     @State private var errorText: String?
 
     private var cleanQuery: String {
@@ -216,6 +217,14 @@ struct AddFriendView: View {
                     }
                 } footer: {
                     Text("聊天号是对方注册时设置的 ID，需要完整输入。")
+                }
+
+                Section {
+                    Button {
+                        showsScanner = true
+                    } label: {
+                        Label("扫一扫对方的二维码", systemImage: "qrcode.viewfinder")
+                    }
                 }
 
                 if let result {
@@ -244,6 +253,12 @@ struct AddFriendView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button("关闭") { dismiss() }
+                }
+            }
+            .sheet(isPresented: $showsScanner) {
+                CodeScannerSheet { username in
+                    query = username
+                    search()
                 }
             }
             .errorAlert("操作失败", message: $errorText)

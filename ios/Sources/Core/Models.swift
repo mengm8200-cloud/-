@@ -67,10 +67,10 @@ struct ChatTarget: Hashable, Identifiable {
 }
 
 struct Message: Decodable, Identifiable, Hashable {
-    static let columns = "id,seq,conversation_id,sender_id,kind,body,media_path,created_at"
+    static let columns = "id,seq,conversation_id,sender_id,kind,body,media_path,duration_ms,created_at"
 
     enum Kind: String, Decodable {
-        case text, image, unsupported
+        case text, image, voice, unsupported
 
         // A newer server may add kinds this build does not know; keep the list decodable.
         init(from decoder: Decoder) throws {
@@ -86,6 +86,7 @@ struct Message: Decodable, Identifiable, Hashable {
     let kind: Kind
     let body: String
     let mediaPath: String?
+    let durationMs: Int?
     let createdAt: Date
 }
 
