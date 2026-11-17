@@ -40,21 +40,44 @@ struct RootView: View {
 }
 
 struct MainTabView: View {
+    private enum Tab: Hashable {
+        case chats, contacts, moments, me
+    }
+
     @Environment(\.scenePhase) private var scenePhase
     @StateObject private var store = ChatStore()
+    @State private var tab = MainTabView.initialTab
+
+    private static var initialTab: Tab {
+        #if DEBUG
+        if Demo.isEnabled {
+            switch Demo.screen {
+            case "contacts": return .contacts
+            case "moments": return .moments
+            case "me", "mycode": return .me
+            default: return .chats
+            }
+        }
+        #endif
+        return .chats
+    }
 
     var body: some View {
-        TabView {
+        TabView(selection: $tab) {
             ConversationListView()
                 .tabItem { Label("消息", systemImage: "message.fill") }
                 .badge(store.unreadTotal)
+                .tag(Tab.chats)
             ContactsView()
                 .tabItem { Label("联系人", systemImage: "person.2.fill") }
                 .badge(store.requests.count)
+                .tag(Tab.contacts)
             MomentsView()
                 .tabItem { Label("动态", systemImage: "photo.on.rectangle.angled") }
+                .tag(Tab.moments)
             MeView()
                 .tabItem { Label("我", systemImage: "person.crop.circle.fill") }
+                .tag(Tab.me)
         }
         .environmentObject(store)
         .task(id: scenePhase) {

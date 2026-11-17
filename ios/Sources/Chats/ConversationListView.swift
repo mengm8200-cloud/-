@@ -8,9 +8,22 @@ struct ConversationListView: View {
     }
 
     @EnvironmentObject private var store: ChatStore
-    @State private var path: [ChatTarget] = []
+    @State private var path: [ChatTarget] = ConversationListView.initialPath
     @State private var sheet: Sheet?
     @State private var errorText: String?
+
+    private static var initialPath: [ChatTarget] {
+        #if DEBUG
+        if Demo.isEnabled {
+            switch Demo.screen {
+            case "chat": return [Demo.directTarget]
+            case "group": return [Demo.groupTarget]
+            default: break
+            }
+        }
+        #endif
+        return []
+    }
 
     var body: some View {
         NavigationStack(path: $path) {

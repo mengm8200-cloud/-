@@ -20,6 +20,13 @@ final class MomentsModel: ObservableObject {
     // MARK: - Loading
 
     func refresh() async {
+        #if DEBUG
+        if Demo.isEnabled {
+            posts = Demo.posts
+            hasLoaded = true
+            return
+        }
+        #endif
         do {
             let rows: [Post] = try await Backend.shared.rpc(
                 "moments_feed", ["p_limit": .int(MomentsModel.pageSize)]

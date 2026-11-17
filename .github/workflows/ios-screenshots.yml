@@ -1,0 +1,115 @@
+# Builds the app for the simulator, opens each screen with sample data
+# (the DEBUG-only `-demo` mode) and commits the screenshots to docs/screenshots
+# so the UI can be reviewed without a device or a backend.
+name: iOS Screenshots
+
+on:
+  push:
+    branches: ["claude/**"]
+    paths:
+      - "ios/**"
+      - ".github/workflows/ios-screenshots.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ios-screenshots-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  screenshots:
+    name: Capture screenshots
+    runs-on: macos-26
+    timeout-minutes: 30
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Install XcodeGen
+        env:
+          HOMEBREW_NO_AUTO_UPDATE: "1"
+          HOMEBREW_NO_INSTALL_CLEANUP: "1"
+        run: command -v xcodegen || brew install xcodegen
+
+      - name: Generate Xcode project
+        working-directory: ios
+        run: xcodegen generate
+
+      - name: Pick a simulator
+        id: sim
+        run: |
+          udid=$(xcrun simctl list devices available -j | python3 -c '
+          import json, re, sys
+          devices = json.load(sys.stdin)["devices"]
+          def version(runtime):
+              return [int(n) for n in re.findall(r"\d+", runtime.rsplit(".", 1)[-1])]
+          runtimes = sorted((r for r in devices if "iOS" in r and devices[r]), key=version, reverse=True)
+          preferred = ["iPhone 17 Pro", "iPhone 17", "iPhone 16 Pro", "iPhone 16"]
+          for runtime in runtimes:
+              phones = [d for d in devices[runtime] if d["name"].startswith("iPhone")]
+              for name in preferred:
+                  for d in phones:
+                      if d["name"] == name:
+                          print(d["udid"]); sys.exit()
+              if phones:
+                  print(phones[0]["udid"]); sys.exit()
+          sys.exit("no iPhone simulator available")
+          ')
+          echo "udid=$udid" >> "$GITHUB_OUTPUT"
+          xcrun simctl list devices available | grep "$udid"
+
+      - name: Build for the simulator
+        working-directory: ios
+        run: |
+          xcodebuild build \
+            -project ChatApp.xcodeproj \
+            -scheme ChatApp \
+            -configuration Debug \
+            -destination "platform=iOS Simulator,id=${{ steps.sim.outputs.udid }}" \
+            -derivedDataPath "$RUNNER_TEMP/derived" \
+            -quiet \
+            CODE_SIGNING_ALLOWED=NO
+
+      - name: Capture each screen
+        env:
+          UDID: ${{ steps.sim.outputs.udid }}
+        run: |
+          app="$RUNNER_TEMP/derived/Build/Products/Debug-iphonesimulator/ChatApp.app"
+          bundle_id=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' "$app/Info.plist")
+          raw="$RUNNER_TEMP/shots"
+          mkdir -p "$raw" docs/screenshots
+
+          xcrun simctl boot "$UDID"
+          xcrun simctl bootstatus "$UDID" -b
+          xcrun simctl install "$UDID" "$app"
+          xcrun simctl status_bar "$UDID" override \
+            --time "9:41" --batteryState charged --batteryLevel 100 --cellularBars 4 --wifiBars 3
+
+          first=1
+          for screen in auth setup chats chat group contacts moments me mycode; do
+            xcrun simctl terminate "$UDID" "$bundle_id" 2>/dev/null || true
+            xcrun simctl launch "$UDID" "$bundle_id" \
+              -demo -demoScreen "$screen" -AppleLanguages "(zh-Hans)" -AppleLocale zh_CN
+            # The very first launch on a fresh simulator is much slower.
+            if [ "$first" = 1 ]; then sleep 15; first=0; else sleep 6; fi
+            xcrun simctl io "$UDID" screenshot "$raw/$screen.png"
+            sips -s format jpeg -s formatOptions 70 --resampleWidth 600 \
+              "$raw/$screen.png" --out "docs/screenshots/$screen.jpg" >/dev/null
+          done
+          ls -la docs/screenshots
+
+      - name: Commit screenshots
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/screenshots
+          if git diff --cached --quiet; then
+            echo "Screenshots unchanged."
+            exit 0
+          fi
+          git commit -m "Update app screenshots"
+          git pull --rebase origin "$GITHUB_REF_NAME"
+          git push origin "HEAD:$GITHUB_REF_NAME"

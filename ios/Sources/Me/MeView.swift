@@ -4,7 +4,16 @@ import SwiftUI
 struct MeView: View {
     @EnvironmentObject private var app: AppState
     @State private var confirmsSignOut = false
-    @State private var showsMyCode = false
+    @State private var showsMyCode = MeView.initiallyShowsMyCode
+
+    private static var initiallyShowsMyCode: Bool {
+        #if DEBUG
+        if Demo.isEnabled, Demo.screen == "mycode" {
+            return true
+        }
+        #endif
+        return false
+    }
 
     private var version: String {
         let info = Bundle.main.infoDictionary

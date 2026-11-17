@@ -39,6 +39,16 @@ final class ChatModel: ObservableObject {
     @discardableResult
     func refresh() async -> Bool {
         guard !hasLoaded else { return await poll() }
+        #if DEBUG
+        if Demo.isEnabled {
+            let people = Demo.members(of: conversationId)
+            members = Dictionary(people.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
+            messages = Demo.messages(in: conversationId)
+            hasLoaded = true
+            isLoading = false
+            return true
+        }
+        #endif
         do {
             let loadedMembers: [Profile] = try await Backend.shared.rpc(
                 "conversation_member_profiles", ["p_conversation_id": .uuid(conversationId)]

@@ -29,6 +29,21 @@ final class AppState: ObservableObject {
     }
 
     func bootstrap() async {
+        #if DEBUG
+        if Demo.isEnabled {
+            Demo.seedImages()
+            switch Demo.screen {
+            case "auth":
+                phase = .signedOut
+            case "setup":
+                phase = .needsProfile
+            default:
+                me = Demo.me
+                phase = .ready
+            }
+            return
+        }
+        #endif
         guard BackendConfig.isConfigured else {
             phase = .unconfigured
             return

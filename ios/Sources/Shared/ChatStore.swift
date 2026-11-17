@@ -16,6 +16,13 @@ final class ChatStore: ObservableObject {
     // MARK: - Loading
 
     func refreshConversations() async {
+        #if DEBUG
+        if Demo.isEnabled {
+            conversations = Demo.conversations
+            hasLoadedConversations = true
+            return
+        }
+        #endif
         let loaded: [ConversationSummary]? = try? await Backend.shared.rpc("my_conversations")
         guard let rows = loaded else { return }
         // Assigning an equal value would still redraw every list that observes the store.
@@ -26,6 +33,14 @@ final class ChatStore: ObservableObject {
     }
 
     func refreshContacts() async {
+        #if DEBUG
+        if Demo.isEnabled {
+            friends = Demo.friends
+            requests = Demo.requests
+            hasLoadedContacts = true
+            return
+        }
+        #endif
         let loadedFriends: [Profile]? = try? await Backend.shared.rpc("my_friends")
         if let rows = loadedFriends, rows != friends {
             friends = rows
