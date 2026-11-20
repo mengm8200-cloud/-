@@ -1,0 +1,200 @@
+[
+ {
+  "file": "line01.wav",
+  "clip": "1B",
+  "who": "鸣人（旁白）",
+  "text": "我救下了很多人……",
+  "start": 4.5,
+  "window": 2.5,
+  "speech": 2.182,
+  "speed": 0.85,
+  "gain": 0.9
+ },
+ {
+  "file": "line02.wav",
+  "clip": "1C",
+  "who": "鸣人（旁白）",
+  "text": "却始终没能救下你。",
+  "start": 7.6,
+  "window": 3.2,
+  "speech": 2.665,
+  "speed": 0.8,
+  "gain": 0.85
+ },
+ {
+  "file": "line03.wav",
+  "clip": "2B",
+  "who": "鸣人",
+  "text": "好色仙人，等着我。",
+  "start": 16.8,
+  "window": 2.6,
+  "speech": 1.968,
+  "speed": 0.95,
+  "gain": 1.0
+ },
+ {
+  "file": "line04.wav",
+  "clip": "3D",
+  "who": "自来也（惊愕）",
+  "text": "鸣人？",
+  "start": 34.5,
+  "window": 1.1,
+  "speech": 0.994,
+  "speed": 0.85,
+  "gain": 0.75
+ },
+ {
+  "file": "line05.wav",
+  "clip": "3E",
+  "who": "鸣人（不回头）",
+  "text": "这次，我赶上了。",
+  "start": 36.4,
+  "window": 2.2,
+  "speech": 1.844,
+  "speed": 0.9,
+  "gain": 1.0
+ },
+ {
+  "file": "line06.wav",
+  "clip": "4D",
+  "who": "佩恩·天道",
+  "text": "这种力量……你究竟是谁？",
+  "start": 50.6,
+  "window": 3.0,
+  "speech": 3.097,
+  "speed": 1.038,
+  "gain": 1.0
+ },
+ {
+  "file": "line07.wav",
+  "clip": "4E",
+  "who": "鸣人",
+  "text": "漩涡鸣人。",
+  "start": 54.3,
+  "window": 1.1,
+  "speech": 1.109,
+  "speed": 1.0,
+  "gain": 1.05
+ },
+ {
+  "file": "line08.wav",
+  "clip": "4E",
+  "who": "鸣人",
+  "text": "是被这个人教着长大的忍者。",
+  "start": 55.8,
+  "window": 3.0,
+  "speech": 3.283,
+  "speed": 0.9,
+  "gain": 1.0
+ },
+ {
+  "file": "line09.wav",
+  "clip": "5C",
+  "who": "自来也",
+  "text": "看来，你已经走得比我想象中远了。",
+  "start": 68.6,
+  "window": 3.8,
+  "speech": 3.46,
+  "speed": 0.9,
+  "gain": 1.0
+ },
+ {
+  "file": "line10.wav",
+  "clip": "5D",
+  "who": "鸣人",
+  "text": "所以这一次，换我带你回家。",
+  "start": 73.4,
+  "window": 3.2,
+  "speech": 3.284,
+  "speed": 0.9,
+  "gain": 1.0
+ },
+ {
+  "file": "line11.wav",
+  "clip": "6A",
+  "who": "佩恩·天道（可选）",
+  "text": "神罗天征。",
+  "start": 78.2,
+  "window": 1.2,
+  "speech": 1.281,
+  "speed": 0.959,
+  "gain": 0.9
+ },
+ {
+  "file": "line12.wav",
+  "clip": "6E",
+  "who": "自来也（低声）",
+  "text": "这小子……已经强到这种地步了吗？",
+  "start": 91.3,
+  "window": 3.5,
+  "speech": 3.472,
+  "speed": 0.95,
+  "gain": 0.8
+ },
+ {
+  "file": "line13.wav",
+  "clip": "7C",
+  "who": "自来也",
+  "text": "这是你的术？",
+  "start": 103.6,
+  "window": 1.4,
+  "speech": 1.362,
+  "speed": 1.0,
+  "gain": 0.9
+ },
+ {
+  "file": "line14.wav",
+  "clip": "7C",
+  "who": "鸣人",
+  "text": "不是。",
+  "start": 105.6,
+  "window": 1.0,
+  "speech": 0.626,
+  "speed": 1.0,
+  "gain": 0.95
+ },
+ {
+  "file": "line15.wav",
+  "clip": "8B",
+  "who": "陌生声音（画外）",
+  "text": "救下自来也，就要用你原本的未来交换。",
+  "start": 118.4,
+  "window": 4.4,
+  "speech": 4.357,
+  "speed": 1.107,
+  "gain": 1.0
+ },
+ {
+  "file": "line16.wav",
+  "clip": "8C",
+  "who": "自来也",
+  "text": "鸣人，放下我。",
+  "start": 123.6,
+  "window": 2.0,
+  "speech": 1.873,
+  "speed": 0.85,
+  "gain": 0.9
+ },
+ {
+  "file": "line17.wav",
+  "clip": "8D",
+  "who": "鸣人",
+  "text": "我连命运都能打赢。",
+  "start": 127.0,
+  "window": 2.0,
+  "speech": 2.054,
+  "speed": 0.95,
+  "gain": 1.05
+ },
+ {
+  "file": "line18.wav",
+  "clip": "8D",
+  "who": "鸣人",
+  "text": "你算什么？",
+  "start": 129.3,
+  "window": 1.4,
+  "speech": 0.941,
+  "speed": 1.05,
+  "gain": 1.3
+ }
+]

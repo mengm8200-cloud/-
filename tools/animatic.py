@@ -1264,6 +1264,19 @@ def synth_audio(d, total, path):
         bell = sum(sine(dur, f0 * h) * dec(m, tau) * a for h, tau, a in ((1, 2.2, 0.6), (2.76, 1.1, 0.3), (5.4, 0.5, 0.15), (8.93, 0.25, 0.08)))
         add(bell, S["END"] + dt, g)
 
+    # dialogue (from tools/voice.py), with the ambience ducked underneath it
+    voice = voice_track(d, n)
+    if voice is not None:
+        k = int(0.2 * SR)
+        cs = np.concatenate([[0.0], np.cumsum(np.abs(voice), dtype=np.float64)])
+        env = ((cs[k:] - cs[:-k]) / k).astype(np.float32)
+        env = np.roll(np.concatenate([env, np.zeros(n - len(env), np.float32)]), k // 2)
+        duck = 1 - 0.55 * np.clip(env / 0.06, 0, 1)
+        L *= duck
+        R *= duck
+        L += voice * 0.6
+        R += voice * 0.6
+
     mix = np.stack([L, R], 1)
     mix = np.tanh(mix * 1.6) / np.tanh(1.6)
     peak = np.max(np.abs(mix)) or 1.0
@@ -1274,6 +1287,24 @@ def synth_audio(d, total, path):
         wf.setsampwidth(2)
         wf.setframerate(SR)
         wf.writeframes(mix.tobytes())
+
+
+def voice_track(d, n):
+    """Mono dialogue track built from <ep>/voice/voices.json, or None if there is none."""
+    man = ROOT / d["_ep"] / "voice" / "voices.json"
+    if not man.exists():
+        return None
+    v = np.zeros(n, np.float32)
+    for item in json.loads(man.read_text(encoding="utf-8")):
+        with wave.open(str(man.parent / item["file"]), "rb") as wf:
+            sr = wf.getframerate()
+            x = np.frombuffer(wf.readframes(wf.getnframes()), np.int16).astype(np.float32) / 32767
+        if sr != SR:
+            x = np.interp(np.arange(0, len(x), sr / SR), np.arange(len(x)), x).astype(np.float32)
+        i0 = int(item["start"] * SR)
+        seg = x[: max(0, n - i0)] * item.get("gain", 1.0)
+        v[i0:i0 + len(seg)] += seg
+    return v
 
 
 # ------------------------------------------------------------------ main
