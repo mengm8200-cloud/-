@@ -14,7 +14,7 @@ iOS 证书一键生成（App Store Connect API）
   4. 创建明确 App ID 并开启常用全权限（已存在则复用）
   5. 生成 Ad Hoc 描述文件并下载
 """
-import argparse, base64, json, os, subprocess, sys, time
+import argparse, base64, json, os, shutil, subprocess, sys, time
 import jwt, requests
 from cryptography import x509
 from cryptography.hazmat.primitives import hashes, serialization
@@ -257,12 +257,20 @@ def main():
     ap.add_argument("--bundle-id")
     ap.add_argument("--out", default="out")
     ap.add_argument("--profile-only", action="store_true", help="只重新生成描述文件")
+    ap.add_argument("--key", help="复用已有私钥 ios.key（用自己账号给多个客户开时传入）")
+    ap.add_argument("--profile-name", help="描述文件名称，默认 AllCap-<name>")
     a = ap.parse_args()
 
     outdir = os.path.join(a.out, a.name)
     os.makedirs(outdir, exist_ok=True)
+    if a.key:
+        dst = os.path.join(outdir, "ios.key")
+        if os.path.abspath(a.key) != os.path.abspath(dst):
+            shutil.copyfile(a.key, dst)
+            os.chmod(dst, 0o600)
     asc = ASC(a.issuer, a.key_id, a.p8)
     bundle = a.bundle_id or f"com.{a.name.lower()}.allcap"
+    profile_name = a.profile_name or f"AllCap-{a.name}"
 
     key, csr = ensure_key_csr(outdir, a.name)
     cert_id, der = ensure_cert(asc, key, csr, outdir)
@@ -275,7 +283,7 @@ def main():
     bid, _ = ensure_bundle(asc, bundle, "AllCap")
     if not a.profile_only:
         enable_caps(asc, bid)
-    path = make_profile(asc, bid, cert_id, dev_ids, "AllCap", outdir)
+    path = make_profile(asc, bid, cert_id, dev_ids, profile_name, outdir)
     check_profile(path)
     open(os.path.join(outdir, "密码.txt"), "w").write(f"p12 密码: {a.password}\nBundle ID: {bundle}\n")
     log(f"\n完成，文件在 {outdir}")

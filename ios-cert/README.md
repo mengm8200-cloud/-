@@ -17,8 +17,19 @@ python3 ioscert.py --issuer ISSUER_ID --key-id KEY_ID --p8 AuthKey_XXXX.p8 \
 
 - 同一个 `out/<name>/ios.key` 已存在时会复用，并复用账号里匹配该私钥的证书（不新建证书）。
 - `--profile-only`：只重新生成描述文件（加设备、改完应用组后用）。
+- `--key`：复用指定的私钥；`--profile-name`：自定义描述文件名（默认 `AllCap-<name>`）。
 - 依赖：`pip install pyjwt cryptography requests`，以及 `openssl`（3.x，p12 用 `-legacy` 兼容 iOS）。
 - 云环境需允许访问 `api.appstoreconnect.apple.com`。
+
+## 用自己的账号给客户开（共用一张证书）
+不新建证书和应用组，只把客户设备加进自己的账号，每个客户单独一个描述文件：
+```bash
+python3 ioscert.py --issuer 自己的ISSUER --key-id 自己的KEY_ID --p8 自己的.p8 \
+  --key 自己的ios.key --bundle-id com.yimeng.allcap \
+  --name 客户名 --udid 客户UDID
+```
+输出 `out/<客户名>/AllCap-<客户名>.mobileprovision` + 同一个 `distribution.p12`。
+注意：每年每类设备最多 100 台；所有客户共用一张证书，证书被撤销会全部失效。
 
 ## 开启的权限（19 项）
 Access Wi-Fi Information、App Groups、Associated Domains、Data Protection（首次解锁后）、Game Center、HealthKit、HomeKit、Hotspot、iCloud（CloudKit）、Multipath、Network Extensions、NFC Tag Reading、Personal VPN、Push Notifications、Siri、Increased Memory Limit、Extended Virtual Addressing、Time Sensitive Notifications、Communication Notifications。
