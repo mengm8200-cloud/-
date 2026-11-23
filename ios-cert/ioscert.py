@@ -41,7 +41,16 @@ CAPS = [
     ("PERSONAL_VPN", None),
     ("PUSH_NOTIFICATIONS", None),
     ("SIRIKIT", None),
-    # 以下为较新的能力，API 若不支持会提示，需到网页手动勾选
+    ("APPLE_ID_AUTH", [{"key": "APPLE_ID_AUTH_APP_CONSENT", "options": [{"key": "PRIMARY_APP_CONSENT"}]}]),
+    ("AUTOFILL_CREDENTIAL_PROVIDER", None),
+    ("WALLET", None),
+    ("MAPS", None),
+    ("INTER_APP_AUDIO", None),
+    ("CLASSKIT", None),
+    ("COREMEDIA_HLS_LOW_LATENCY", None),
+    ("NETWORK_CUSTOM_PROTOCOL", None),
+    ("WIRELESS_ACCESSORY_CONFIGURATION", None),
+    # 以下 4 项 API 不支持（新 App ID 上会失败），需到网页手动勾选
     ("INCREASED_MEMORY_LIMIT", None),
     ("EXTENDED_VIRTUAL_ADDRESSING", None),
     ("USERNOTIFICATIONS_TIMESENSITIVE", None),

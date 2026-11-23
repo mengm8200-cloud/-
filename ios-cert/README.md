@@ -31,15 +31,19 @@ python3 ioscert.py --issuer 自己的ISSUER --key-id 自己的KEY_ID --p8 自己
 输出 `out/<客户名>/AllCap-<客户名>.mobileprovision` + 同一个 `distribution.p12`。
 注意：每年每类设备最多 100 台；所有客户共用一张证书，证书被撤销会全部失效。
 
-## 开启的权限（19 项）
-Access Wi-Fi Information、App Groups、Associated Domains、Data Protection（首次解锁后）、Game Center、HealthKit、HomeKit、Hotspot、iCloud（CloudKit）、Multipath、Network Extensions、NFC Tag Reading、Personal VPN、Push Notifications、Siri、Increased Memory Limit、Extended Virtual Addressing、Time Sensitive Notifications、Communication Notifications。
+## 开启的权限（28 项）
+**API 自动开启（24 项）**：Access Wi-Fi Information、App Groups、Associated Domains、AutoFill Credential Provider、ClassKit、Custom Network Protocol、Data Protection（首次解锁后）、Game Center、HealthKit、HomeKit、Hotspot、iCloud（CloudKit）、In-App Purchase、Inter-App Audio、Low Latency HLS、Maps、Multipath、Network Extensions、NFC Tag Reading、Personal VPN、Push Notifications、Sign In with Apple、Siri、Wallet、Wireless Accessory Configuration。
+
+**API 不支持，新 App ID 需网页手动勾选（4 项）**：Increased Memory Limit、Extended Virtual Addressing、Time Sensitive Notifications、Communication Notifications。脚本会列出未开成功的项。
+
+**可选，仅网页能开**：Fonts、Group Activities、Push to Talk、WeatherKit、App Attest、Shared with You、Media Device Discovery、Head Pose、Spatial Audio Profile、Wi-Fi Aware、Wi-Fi Network Sharing、Network Topology Observation、Location Push Service Extension、iCloud Extended Share Access、Messages Collaboration、HealthKit Estimate Recalibration、Multitasking Camera Access、Sustained Execution、Low-Latency Streaming。
 
 不开启（会导致无法安装）：App Clip 按需安装、DriverKit、Enhanced Security、Default 系列、MDM、System Extension、运营商相关。
 
-## 需要手动的一步：应用组
-API 不支持创建 App Group。新账号需在 developer.apple.com：
+## 新账号需要手动的一步：应用组 + 4 项权限
+API 不支持创建 App Group，也开不了上面 4 项。新账号在 developer.apple.com：
 1. 标识符 → ＋ → 应用组 → `group.com.<name>.allcap` → 注册
-2. App ID `AllCap` → App Groups → Configure → 勾选该组 → Save → Confirm
+2. App ID `AllCap` → App Groups → Configure → 勾选该组；同时勾选那 4 项 → Save → Confirm
 3. 再运行一次脚本（加 `--profile-only`）
 
 ## 用完
