@@ -1,0 +1,9 @@
+# 不要提交任何密钥和证书
+*.p8
+*.p12
+*.key
+*.csr
+*.cer
+*.pem
+*.mobileprovision
+out/
